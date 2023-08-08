@@ -34,7 +34,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmdSho
 	return static_cast<int>(msg.wParam);
 }
 
-//Обработка сообщений
+//РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№
 LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
@@ -51,7 +51,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 	}
 	return 0;
 
-	//Обработка действий колеса мыши
+	//РћР±СЂР°Р±РѕС‚РєР° РґРµР№СЃС‚РІРёР№ РєРѕР»РµСЃР° РјС‹С€Рё
 	case WM_MOUSEWHEEL:
 	{
 		int wheelDelta = GET_WHEEL_DELTA_WPARAM(wParam);
@@ -61,7 +61,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 		break;
 	}
 
-	//Обработка нажатых клавиш
+	//ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г­Г Г¦Г ГІГ»Гµ ГЄГ«Г ГўГЁГё
 	case WM_KEYDOWN:
 	{
 		switch (wParam)
@@ -87,16 +87,16 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 		}
 	}
 
-	//Обработка сообщений скроллбара
+	//ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г±Г®Г®ГЎГ№ГҐГ­ГЁГ© Г±ГЄГ°Г®Г«Г«ГЎГ Г°Г 
 	case WM_VSCROLL:
 	{
 		scrollInfo.fMask = SIF_ALL;
 		GetScrollInfo(hScroll, SB_CTL, &scrollInfo);
 
-		//Запоминаем позицию ползунка скроллбара до изменения позиции для дальнейшего сравнения
+		//Г‡Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ ГЇГ®Г§ГЁГ¶ГЁГѕ ГЇГ®Г«Г§ГіГ­ГЄГ  Г±ГЄГ°Г®Г«Г«ГЎГ Г°Г  Г¤Г® ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї ГЇГ®Г§ГЁГ¶ГЁГЁ Г¤Г«Гї Г¤Г Г«ГјГ­ГҐГ©ГёГҐГЈГ® Г±Г°Г ГўГ­ГҐГ­ГЁГї
 		scrollBuffer = scrollInfo.nPos;
 
-		//Смещение ползунка измеряется построчно
+		//Г‘Г¬ГҐГ№ГҐГ­ГЁГҐ ГЇГ®Г«Г§ГіГ­ГЄГ  ГЁГ§Г¬ГҐГ°ГїГҐГІГ±Гї ГЇГ®Г±ГІГ°Г®Г·Г­Г®
 		switch (LOWORD(wParam))
 		{
 
@@ -136,10 +136,10 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 		SetScrollInfo(hScroll, SB_CTL, &scrollInfo, TRUE);
 		GetScrollInfo(hScroll, SB_CTL, &scrollInfo);
 
-		//Запоминаем позицию ползунка скроллбара после изменения его позиции
+		//Г‡Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ ГЇГ®Г§ГЁГ¶ГЁГѕ ГЇГ®Г«Г§ГіГ­ГЄГ  Г±ГЄГ°Г®Г«Г«ГЎГ Г°Г  ГЇГ®Г±Г«ГҐ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї ГҐГЈГ® ГЇГ®Г§ГЁГ¶ГЁГЁ
 		scrollPos = scrollInfo.nPos;
 
-		//Смещаем данные на экране
+		//Г‘Г¬ГҐГ№Г ГҐГ¬ Г¤Г Г­Г­Г»ГҐ Г­Г  ГЅГЄГ°Г Г­ГҐ
 		shiftData();
 	}
 	return 0;
@@ -161,7 +161,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-//Создание диалога "Open File"
+//Г‘Г®Г§Г¤Г Г­ГЁГҐ Г¤ГЁГ Г«Г®ГЈГ  "Open File"
 void addStripMenu(HWND hWnd)
 {
 	hMenu = CreateMenu();
@@ -169,16 +169,16 @@ void addStripMenu(HWND hWnd)
 	SetMenu(hWnd, hMenu);
 }
 
-//Создание контролов
+//Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЄГ®Г­ГІГ°Г®Г«Г®Гў
 void addControls(HWND hWnd)
 {
 	//HWND for static controls
 	HWND hStatic;
 
-	//Шрифт для контролов.
+	//ГГ°ГЁГґГІ Г¤Г«Гї ГЄГ®Г­ГІГ°Г®Г«Г®Гў.
 	HFONT hFont = CreateFont(14, 6, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_CHARACTER_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, L"Courier");
 
-	//Создание static control, соответствующего edit control, присваивание шрифтов
+	//Г‘Г®Г§Г¤Г Г­ГЁГҐ static control, Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГЈГ® edit control, ГЇГ°ГЁГ±ГўГ ГЁГўГ Г­ГЁГҐ ГёГ°ГЁГґГІГ®Гў
 	// 1 - Offset(h)
 	hStatic = CreateWindowEx(WS_EX_STATICEDGE, L"Static", L"Offset (h)", WS_VISIBLE | WS_CHILD | ES_CENTER, 0, 0, 100, 20, hWnd, NULL, NULL, NULL);
 	SendMessage(hStatic, WM_SETFONT, (WPARAM)hFont, (LPARAM)TRUE);
@@ -200,11 +200,11 @@ void addControls(HWND hWnd)
 	hEditText = CreateWindowEx(WS_EX_STATICEDGE, L"Edit", L"", WS_VISIBLE | WS_CHILD | ES_MULTILINE | ES_READONLY, 500, 20, 190, 525, hWnd, NULL, NULL, NULL);
 	SendMessage(hEditText, WM_SETFONT, (WPARAM)hFont, (LPARAM)TRUE);
 
-	//Создание скроллбара
+	//Г‘Г®Г§Г¤Г Г­ГЁГҐ Г±ГЄГ°Г®Г«Г«ГЎГ Г°Г 
 	hScroll = CreateWindowEx(WS_EX_STATICEDGE, L"Scrollbar", NULL, WS_CHILD | WS_VISIBLE | SBS_VERT, 690, 0, 20, 470, hWnd, NULL, NULL, NULL);
 }
 
-//Обработка диалога "Open File" и подготовка к началу работы
+//ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г¤ГЁГ Г«Г®ГЈГ  "Open File" ГЁ ГЇГ®Г¤ГЈГ®ГІГ®ГўГЄГ  ГЄ Г­Г Г·Г Г«Гі Г°Г ГЎГ®ГІГ»
 void openFileDialog(HWND hWnd)
 {
 	wchar_t filename[100];
@@ -221,11 +221,11 @@ void openFileDialog(HWND hWnd)
 
 	GetOpenFileName(&ofn);
 
-	//Обновляются глобальные переменные и строки для отображения в edit контролах
+	//ГЋГЎГ­Г®ГўГ«ГїГѕГІГ±Гї ГЈГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЁ Г±ГІГ°Г®ГЄГЁ Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї Гў edit ГЄГ®Г­ГІГ°Г®Г«Г Гµ
 	wipeData();
 	clearGlobalParams();
 
-	//Проверка, готов ли файл к работе
+	//ГЏГ°Г®ГўГҐГ°ГЄГ , ГЈГ®ГІГ®Гў Г«ГЁ ГґГ Г©Г« ГЄ Г°Г ГЎГ®ГІГҐ
 	if (filePrepare(ofn.lpstrFile) == TRUE && getDataPointer() == TRUE)
 	{
 		setScroll();
@@ -237,7 +237,7 @@ void openFileDialog(HWND hWnd)
 	}
 }
 
-//Уведомление об ошибке и отправка соответствующего сообщения системе
+//Г“ГўГҐГ¤Г®Г¬Г«ГҐГ­ГЁГҐ Г®ГЎ Г®ГёГЁГЎГЄГҐ ГЁ Г®ГІГЇГ°Г ГўГЄГ  Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГЈГ® Г±Г®Г®ГЎГ№ГҐГ­ГЁГї Г±ГЁГ±ГІГҐГ¬ГҐ
 int displayErrorMessage()
 {
 	dataEditBytes = L"ERROR";
@@ -246,24 +246,24 @@ int displayErrorMessage()
 	return EXIT_FAILURE;
 }
 
-//Открываем файл и отображаем в память
+//ГЋГІГЄГ°Г»ГўГ ГҐГ¬ ГґГ Г©Г« ГЁ Г®ГІГ®ГЎГ°Г Г¦Г ГҐГ¬ Гў ГЇГ Г¬ГїГІГј
 BOOL filePrepare(LPCTSTR lpFileName)
 {
 	HANDLE hFile;
 	if ((hFile = CreateFile(lpFileName, GENERIC_READ, NULL, NULL, OPEN_ALWAYS, NULL, NULL)) == INVALID_HANDLE_VALUE) displayErrorMessage();
 
-	//Вычисляем размер файла
+	//Г‚Г»Г·ГЁГ±Г«ГїГҐГ¬ Г°Г Г§Г¬ГҐГ° ГґГ Г©Г«Г 
 	LARGE_INTEGER fileSizeHigh;
 	if ((GetFileSizeEx(hFile, &fileSizeHigh)) == INVALID_FILE_SIZE) displayErrorMessage();
 
 	else fileSize = fileSizeHigh.QuadPart;
 
-	//Получаем гранулярность памяти
+	//ГЏГ®Г«ГіГ·Г ГҐГ¬ ГЈГ°Г Г­ГіГ«ГїГ°Г­Г®Г±ГІГј ГЇГ Г¬ГїГІГЁ
 	SYSTEM_INFO systemInfo;
 	GetSystemInfo(&systemInfo);
 	dwSystemGranularity = systemInfo.dwAllocationGranularity;
 
-	//Вычисляем количество блоков, на которые разбит файл
+	//Г‚Г»Г·ГЁГ±Г«ГїГҐГ¬ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЎГ«Г®ГЄГ®Гў, Г­Г  ГЄГ®ГІГ®Г°Г»ГҐ Г°Г Г§ГЎГЁГІ ГґГ Г©Г«
 	__int64 fileSizeBuffer = fileSize;
 	while (fileSizeBuffer > 0)
 	{
@@ -277,12 +277,12 @@ BOOL filePrepare(LPCTSTR lpFileName)
 	return TRUE;
 }
 
-//Получаем указатель на спроецированный в память блок файла 
+//ГЏГ®Г«ГіГ·Г ГҐГ¬ ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г±ГЇГ°Г®ГҐГ¶ГЁГ°Г®ГўГ Г­Г­Г»Г© Гў ГЇГ Г¬ГїГІГј ГЎГ«Г®ГЄ ГґГ Г©Г«Г  
 BOOL getDataPointer()
 {
 	dwBytesInBlock = dwSystemGranularity;
 
-	//Если следующий выделяемый блок меньше гранулярности памяти, вычисляется допустимый размер блока
+	//Г…Г±Г«ГЁ Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© ГўГ»Г¤ГҐГ«ГїГҐГ¬Г»Г© ГЎГ«Г®ГЄ Г¬ГҐГ­ГјГёГҐ ГЈГ°Г Г­ГіГ«ГїГ°Г­Г®Г±ГІГЁ ГЇГ Г¬ГїГІГЁ, ГўГ»Г·ГЁГ±Г«ГїГҐГІГ±Гї Г¤Г®ГЇГіГ±ГІГЁГ¬Г»Г© Г°Г Г§Г¬ГҐГ° ГЎГ«Г®ГЄГ 
 	if (blockBegin + dwBytesInBlock > fileSize) dwBytesInBlock = fileSize - blockBegin;
 
 	blockEnd = blockBegin + dwBytesInBlock;
@@ -293,7 +293,7 @@ BOOL getDataPointer()
 	return TRUE;
 }
 
-//Установка значений структуры скроллбара в начальное значение
+//Г“Г±ГІГ Г­Г®ГўГЄГ  Г§Г­Г Г·ГҐГ­ГЁГ© Г±ГІГ°ГіГЄГІГіГ°Г» Г±ГЄГ°Г®Г«Г«ГЎГ Г°Г  Гў Г­Г Г·Г Г«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ
 void setScroll()
 {
 	scrollInfo.cbSize = sizeof(SCROLLINFO);
@@ -305,17 +305,17 @@ void setScroll()
 	SetScrollPos(hScroll, SB_CTL, 0, TRUE);
 }
 
-//Добавляем новую строку для отображения
+//Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г­Г®ГўГіГѕ Г±ГІГ°Г®ГЄГі Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї
 void addLine(int bytesOffset, __int64 hexOffset)
 {
 	CString buffer;
 
-	//Заносим информацию о смещении в буфер, после чего передаём её в переменную для дальнейшего отображения и чистим буфер
+	//Г‡Г Г­Г®Г±ГЁГ¬ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® Г±Г¬ГҐГ№ГҐГ­ГЁГЁ Гў ГЎГіГґГҐГ°, ГЇГ®Г±Г«ГҐ Г·ГҐГЈГ® ГЇГҐГ°ГҐГ¤Г ВёГ¬ ГҐВё Гў ГЇГҐГ°ГҐГ¬ГҐГ­Г­ГіГѕ Г¤Г«Гї Г¤Г Г«ГјГ­ГҐГ©ГёГҐГЈГ® Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї ГЁ Г·ГЁГ±ГІГЁГ¬ ГЎГіГґГҐГ°
 	buffer.Format(L"%07X%i\r\n", hexOffset / 16, 0);
 	dataEditOffset.Append(buffer);
 	buffer.Empty();
 
-	//Заносим информацию о байтах в шестнадцатеричном виде, чистим буфер
+	//Г‡Г Г­Г®Г±ГЁГ¬ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® ГЎГ Г©ГІГ Гµ Гў ГёГҐГ±ГІГ­Г Г¤Г¶Г ГІГҐГ°ГЁГ·Г­Г®Г¬ ГўГЁГ¤ГҐ, Г·ГЁГ±ГІГЁГ¬ ГЎГіГґГҐГ°
 	for (int i = 0; i < 16; i++)
 	{
 		buffer.AppendFormat(L"%02X", pbFile[i + bytesOffset]);
@@ -326,7 +326,7 @@ void addLine(int bytesOffset, __int64 hexOffset)
 	dataEditBytes.Append(buffer);
 	buffer.Empty();
 
-	//Заносим информацию о прочитанном тексте, чистим буфер
+	//Г‡Г Г­Г®Г±ГЁГ¬ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® ГЇГ°Г®Г·ГЁГІГ Г­Г­Г®Г¬ ГІГҐГЄГ±ГІГҐ, Г·ГЁГ±ГІГЁГ¬ ГЎГіГґГҐГ°
 	for (int i = 0; i < 16; i++)
 	{
 		if (pbFile[i + bytesOffset] == '\0') buffer.AppendFormat(L"%c", '.');
@@ -337,7 +337,7 @@ void addLine(int bytesOffset, __int64 hexOffset)
 	dataEditText.Append(buffer);
 }
 
-//Проверяем и смещаем текущий блок файла при необходимости, обновляем страницу для отображения
+//ГЏГ°Г®ГўГҐГ°ГїГҐГ¬ ГЁ Г±Г¬ГҐГ№Г ГҐГ¬ ГІГҐГЄГіГ№ГЁГ© ГЎГ«Г®ГЄ ГґГ Г©Г«Г  ГЇГ°ГЁ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г®Г±ГІГЁ, Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ Г±ГІГ°Г Г­ГЁГ¶Гі Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї
 void addData(direction direction)
 {
 	int linesToAdd = 32;
@@ -348,7 +348,7 @@ void addData(direction direction)
 	{
 		__int64 currentPosInBlock = static_cast<long long>(scrollPos) * line;
 
-		//Проверка, нужно ли смещаться в другой блок при скролле вверх
+		//ГЏГ°Г®ГўГҐГ°ГЄГ , Г­ГіГ¦Г­Г® Г«ГЁ Г±Г¬ГҐГ№Г ГІГјГ±Гї Гў Г¤Г°ГіГЈГ®Г© ГЎГ«Г®ГЄ ГЇГ°ГЁ Г±ГЄГ°Г®Г«Г«ГҐ ГўГўГҐГ°Гµ
 		if (direction == up && getCurrentBlock(currentPosInBlock + blockOffset) < currentBlock)
 		{
 			int blockShift = getCurrentBlock(currentPosInBlock + blockOffset);
@@ -366,7 +366,7 @@ void addData(direction direction)
 			}
 		}
 
-		//Проверка, нужно ли смещаться в другой блок при скролле вниз
+		//ГЏГ°Г®ГўГҐГ°ГЄГ , Г­ГіГ¦Г­Г® Г«ГЁ Г±Г¬ГҐГ№Г ГІГјГ±Гї Гў Г¤Г°ГіГЈГ®Г© ГЎГ«Г®ГЄ ГЇГ°ГЁ Г±ГЄГ°Г®Г«Г«ГҐ ГўГ­ГЁГ§
 		if (direction == down && getCurrentBlock(currentPosInBlock + blockOffset) > currentBlock)
 		{
 			int blockShift = getCurrentBlock(currentPosInBlock + blockOffset);
@@ -378,16 +378,16 @@ void addData(direction direction)
 			getDataPointer();
 		}
 
-		//Добавить строку
+		//Г„Г®ГЎГ ГўГЁГІГј Г±ГІГ°Г®ГЄГі
 		addLine((currentPosInBlock + blockOffset) % dwSystemGranularity, currentPosInBlock + blockOffset);
 
 		if (blockOffset < 496) blockOffset += line;
 	}
-	//Выводим обновленные данные на экран
+	//Г‚Г»ГўГ®Г¤ГЁГ¬ Г®ГЎГ­Г®ГўГ«ГҐГ­Г­Г»ГҐ Г¤Г Г­Г­Г»ГҐ Г­Г  ГЅГЄГ°Г Г­
 	displayData();
 }
 
-//Вычисляем активный блок
+//Г‚Г»Г·ГЁГ±Г«ГїГҐГ¬ Г ГЄГІГЁГўГ­Г»Г© ГЎГ«Г®ГЄ
 int getCurrentBlock(__int64 currentScrollPos)
 {
 	int block = 0;
@@ -399,16 +399,16 @@ int getCurrentBlock(__int64 currentScrollPos)
 	return block;
 }
 
-//Определяем, в каком направлении нужно сместить отображаемую страницу
+//ГЋГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬, Гў ГЄГ ГЄГ®Г¬ Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГЁ Г­ГіГ¦Г­Г® Г±Г¬ГҐГ±ГІГЁГІГј Г®ГІГ®ГЎГ°Г Г¦Г ГҐГ¬ГіГѕ Г±ГІГ°Г Г­ГЁГ¶Гі
 void shiftData()
 {
-	//Смещение страницы вверх
+	//Г‘Г¬ГҐГ№ГҐГ­ГЁГҐ Г±ГІГ°Г Г­ГЁГ¶Г» ГўГўГҐГ°Гµ
 	if (scrollPos < scrollBuffer) addData(up);
-	//Смещение страницы вниз
+	//Г‘Г¬ГҐГ№ГҐГ­ГЁГҐ Г±ГІГ°Г Г­ГЁГ¶Г» ГўГ­ГЁГ§
 	else if (scrollPos > scrollBuffer) addData(down);
 }
 
-//Выводим данные на экран
+//Г‚Г»ГўГ®Г¤ГЁГ¬ Г¤Г Г­Г­Г»ГҐ Г­Г  ГЅГЄГ°Г Г­
 void displayData()
 {
 	Edit_SetText(hEditOffset, dataEditOffset);
@@ -416,7 +416,7 @@ void displayData()
 	Edit_SetText(hEditText, dataEditText);
 }
 
-//Очищаем переменные для вывода на экран
+//ГЋГ·ГЁГ№Г ГҐГ¬ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г¤Г«Гї ГўГ»ГўГ®Г¤Г  Г­Г  ГЅГЄГ°Г Г­
 void wipeData()
 {
 	dataEditOffset.Empty();
@@ -424,7 +424,7 @@ void wipeData()
 	dataEditText.Empty();
 }
 
-//Обновляем глобальные переменные
+//ГЋГЎГ­Г®ГўГ«ГїГҐГ¬ ГЈГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
 void clearGlobalParams()
 {
 	scrollPos = 0;
